@@ -5,6 +5,6 @@ import ru.unfortunately.school.conventervalues.Models.Conversion;
 public interface RecyclerItemOnClickListener {
 
 
-    abstract public void onClick(Conversion conversion);
+    void onClick(Conversion conversion);
 
 }

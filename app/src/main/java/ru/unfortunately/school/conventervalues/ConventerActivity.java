@@ -26,7 +26,6 @@ public class ConventerActivity extends AppCompatActivity {
     private EditText mRightEditText;
     private Spinner mLeftSpinner;
     private Spinner mRightSpinner;
-    private TextView mHeader;
 
     private Conversion mConversion;
 
@@ -80,9 +79,7 @@ public class ConventerActivity extends AppCompatActivity {
 
     private void setUpSpinner(Spinner spinner) {
         final List<Units> units = new ArrayList<>();
-        for (Units unit: mConversion.units) {
-            units.add(unit);
-        }
+        units.addAll(mConversion.units);
         ValuesSpinnerAdapter adapter = new ValuesSpinnerAdapter(units);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -104,10 +101,10 @@ public class ConventerActivity extends AppCompatActivity {
         mRightEditText = findViewById(R.id.edit_text_right);
         mLeftSpinner = findViewById(R.id.spinner_left);
         mRightSpinner = findViewById(R.id.spinner_right);
-        mHeader = findViewById(R.id.text_view_header);
         mConversion = (Conversion) getIntent().getSerializableExtra("Conversion");
         if(mConversion == null)
             mConversion = Conversion.AREA;
+        TextView mHeader = findViewById(R.id.text_view_header);
         mHeader.setText(mConversion.mLabelRes);
     }
 }

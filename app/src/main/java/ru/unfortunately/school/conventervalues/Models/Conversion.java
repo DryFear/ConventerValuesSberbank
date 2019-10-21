@@ -15,8 +15,8 @@ public enum Conversion {
     DENSITY(R.string.density, Arrays.asList(Units.KILOGRAM, Units.MILLIGRAM, Units.GRAM, Units.POUND, Units.TON, Units.CENTNER));
 
 
-    public int mLabelRes;
-    public List<Units> units;
+    public final int mLabelRes;
+    public final List<Units> units;
 
 
     Conversion(int labelName, List<Units> list) {

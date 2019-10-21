@@ -26,9 +26,9 @@ public enum Units {
 
 
     @StringRes
-    public int mLabelRes;
-    public double mConvertToBase;
-    public double mConvertFromBase;
+    public final int mLabelRes;
+    public final double mConvertToBase;
+    public final double mConvertFromBase;
 
     Units(@StringRes int mLabelRes, double convertToBase, double convertFromBase){
         this.mLabelRes = mLabelRes;
