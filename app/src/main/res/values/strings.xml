@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">ConventerValues</string>
+    <string name="text_explanation_for_spinners">Выберите из списка единицы для конвертации:</string>
+    <string name="zero">0</string>
+
+
+
+    <string name="length">Длина</string>
+    <string name="area">Площадь</string>
+    <string name="weight">Масса</string>
+    <string name="volume">Объем</string>
+    <string name="temperature">Температура</string>
+    <string name="density">Плотность</string>
+
+    <string name="kilometre">Километр</string>
+    <string name="metre">Метр</string>
+    <string name="millimetre">Миллиметр</string>
+    <string name="mile">Миля</string>
+    <string name="foot">Фут</string>
+    <string name="inch">Дюйм</string>
+
+    <string name="quad_metre">Кв. метр</string>
+    <string name="quad_kilometre">Кв. километр</string>
+    <string name="hectare">Гектар</string>
+    <string name="akre">Ар</string>
+    <string name="quad_millimetre">Кв. миллиметр</string>
+
+    <string name="kilogram">Килограмм</string>
+    <string name="gram">Грамм</string>
+    <string name="milligram">Миллиграм</string>
+    <string name="pound">Фунт</string>
+    <string name="centner">Центнер</string>
+    <string name="ton">Тонна</string>
+    <string name="warning_text">Работает только длина, масса и площадь :(</string>
+
+
+</resources>
