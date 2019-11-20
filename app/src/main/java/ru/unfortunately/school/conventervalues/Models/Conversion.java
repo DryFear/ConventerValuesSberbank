@@ -1,5 +1,8 @@
 package ru.unfortunately.school.conventervalues.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,4 +27,5 @@ public enum Conversion {
         units = new ArrayList<>(list);
 
     }
+
 }

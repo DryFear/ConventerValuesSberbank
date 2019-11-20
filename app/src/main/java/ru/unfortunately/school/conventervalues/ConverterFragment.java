@@ -3,7 +3,9 @@ package ru.unfortunately.school.conventervalues;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
@@ -13,15 +15,17 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import ru.unfortunately.school.conventervalues.Adapters.ValuesSpinnerAdapter;
 import ru.unfortunately.school.conventervalues.Models.Conversion;
 import ru.unfortunately.school.conventervalues.Models.Units;
 
-public class ConventerActivity extends AppCompatActivity {
+public class ConverterFragment extends Fragment {
 
-    private static final String TAG = "ConventerActivity";
-    
+    private static final String ARG_CONVERSION = "conversion";
+
     private EditText mLeftEditText;
     private EditText mRightEditText;
     private Spinner mLeftSpinner;
@@ -29,15 +33,43 @@ public class ConventerActivity extends AppCompatActivity {
 
     private Conversion mConversion;
 
+
+    private ConverterFragment(){
+        super(R.layout.fragment_conventer);
+    }
+
+    public static ConverterFragment newInstance(Conversion conversion) {
+
+        Bundle args = new Bundle();
+        ConverterFragment fragment = new ConverterFragment();
+        int value = conversion.ordinal();
+        args.putSerializable(ARG_CONVERSION, conversion);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_conventer);
-        initAll();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View root = super.onCreateView(inflater, container, savedInstanceState);
+        mConversion = (Conversion) getArguments().getSerializable(ARG_CONVERSION);
+        initViews(root);
+        return root;
+    }
+
+    private void initViews(View root){
+        mLeftEditText = root.findViewById(R.id.edit_text_left);
+        mRightEditText = root.findViewById(R.id.edit_text_right);
+        mLeftSpinner = root.findViewById(R.id.spinner_left);
+        mRightSpinner = root.findViewById(R.id.spinner_right);
+        if(mConversion == null)
+            mConversion = Conversion.AREA;
+        TextView mHeader = root.findViewById(R.id.text_view_header);
+        mHeader.setText(mConversion.mLabelRes);
+        setUpEditTexts();
         setUpSpinner(mLeftSpinner);
         setUpSpinner(mRightSpinner);
-        setUpEditTexts();
-
     }
 
     private void setUpEditTexts() {
@@ -78,8 +110,7 @@ public class ConventerActivity extends AppCompatActivity {
     }
 
     private void setUpSpinner(Spinner spinner) {
-        final List<Units> units = new ArrayList<>();
-        units.addAll(mConversion.units);
+        final List<Units> units = new ArrayList<>(mConversion.units);
         ValuesSpinnerAdapter adapter = new ValuesSpinnerAdapter(units);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -96,15 +127,4 @@ public class ConventerActivity extends AppCompatActivity {
         });
     }
 
-    private void initAll() {
-        mLeftEditText = findViewById(R.id.edit_text_left);
-        mRightEditText = findViewById(R.id.edit_text_right);
-        mLeftSpinner = findViewById(R.id.spinner_left);
-        mRightSpinner = findViewById(R.id.spinner_right);
-        mConversion = (Conversion) getIntent().getSerializableExtra("Conversion");
-        if(mConversion == null)
-            mConversion = Conversion.AREA;
-        TextView mHeader = findViewById(R.id.text_view_header);
-        mHeader.setText(mConversion.mLabelRes);
-    }
 }

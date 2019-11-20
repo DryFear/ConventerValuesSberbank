@@ -14,7 +14,7 @@ import ru.unfortunately.school.conventervalues.R;
 
 public class ValuesSpinnerAdapter extends BaseAdapter {
 
-    private List<Units> mUnits;
+    private List<Units>     mUnits;
 
     public ValuesSpinnerAdapter(List<Units> units){
         mUnits = new ArrayList<>(units);
